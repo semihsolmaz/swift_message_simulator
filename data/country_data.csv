@@ -1,0 +1,131 @@
+Name,Code,weight,risk
+Afghanistan,AF,1,R
+Aland Islands,AX,1,R
+Albania,AL,10,S
+Algeria,DZ,10,S
+Andorra,AD,3,R
+Angola,AO,3,R
+Anguilla,AI,1,R
+Antigua and Barbuda,AG,2,R
+Argentina,AR,50,S
+Armenia,AM,80,S
+Aruba,AW,2,R
+Australia,AU,300,S
+Austria,AT,500,S
+Azerbaijan,AZ,400,S
+Bahamas,BS,5,R
+Bahrain,BH,6,R
+Bangladesh,BD,600,S
+Barbados,BB,2,R
+Belarus,BY,10,S
+Belgium,BE,200,S
+Belize,BZ,4,R
+Bermuda,BM,2,R
+Bosnia and Herzegovina,BA,5,R
+Botswana,BW,1,R
+Brazil,BR,600,S
+Bulgaria,BG,250,S
+Cambodia,KH,100,S
+Cameroon,CM,2,R
+Canada,CA,500,S
+Cayman Islands,KY,4,R
+Chile,CL,50,S
+China,CN,1000,S
+Congo,CG,5,R
+Cook Islands,CK,2,R
+Costa Rica,CR,4,R
+Cote d'Ivoire,CI,6,R
+Croatia,HR,20,S
+Cuba,CU,5,R
+Cyprus,CY,5,R
+Czech Republic,CZ,50,S
+Denmark,DK,90,S
+Dominica,DM,3,R
+Dominican Republic,DO,5,R
+Egypt,EG,600,S
+Estonia,EE,20,S
+Finland,FI,50,S
+France,FR,600,S
+Georgia,GE,50,S
+Germany,DE,800,S
+Gibraltar,GI,3,R
+Greece,GR,150,S
+Grenada,GD,4,R
+Guernsey,GG,2,R
+Hong Kong,HK,20,S
+Hungary,HU,150,S
+Iceland,IS,50,S
+India,IN,850,S
+Indonesia,ID,600,S
+"Iran, Islamic Republic of",IR,4,R
+Iraq,IQ,1,R
+Ireland,IE,15,S
+Isle of Man,IM,5,R
+Israel,IL,300,S
+Italy,IT,250,S
+Japan,JP,300,S
+Jersey,JE,3,R
+Jordan,JO,90,S
+Kazakhstan,KZ,30,S
+Kenya,KE,4,R
+"Korea, Democratic People's Republic of",KP,2,R
+"Korea, Republic of",KR,200,S
+Kuwait,KW,120,S
+Kyrgyzstan,KG,30,S
+Lebanon,LB,8,R
+Liberia,LR,3,R
+Liechtenstein,LI,3,R
+Lithuania,LT,4,R
+Luxembourg,LU,40,S
+Macao,MO,3,R
+Maldives,MV,5,R
+Malta,MT,60,S
+Marshall Islands,MH,3,R
+Monaco,MC,3,R
+Montenegro,ME,10,S
+Morocco,MA,60,S
+Nauru,NR,3,R
+Nepal,NP,30,S
+Netherlands,NL,120,S
+New Zealand,NZ,350,S
+Nigeria,NG,4,R
+Norway,NO,100,S
+Oman,OM,60,S
+Pakistan,PK,450,S
+Paraguay,PY,60,S
+Peru,PE,30,S
+Philippines,PH,250,S
+Portugal,PT,150,S
+Puerto Rico,PR,20,S
+Qatar,QA,130,S
+Romania,RO,20,S
+Russian Federation,RU,650,S
+Saudi Arabia,SA,350,S
+Serbia,RS,130,S
+Singapore,SG,450,S
+Slovakia,SK,30,S
+Slovenia,SI,50,S
+South Africa,ZA,250,S
+Spain,ES,250,S
+Sri Lanka,LK,350,S
+Sudan,SD,2,R
+Sweden,SE,90,S
+Switzerland,CH,95,S
+Syrian Arab Republic,SY,5,R
+"Taiwan, Province of China",TW,90,S
+Thailand,TH,120,S
+Tunisia,TN,90,S
+Turkey,TR,320,S
+Turkmenistan,TM,200,S
+Ukraine,UA,220,S
+United Arab Emirates,AE,250,S
+United Kingdom,GB,700,S
+United States,US,900,S
+Uruguay,UY,50,S
+Uzbekistan,UZ,20,S
+Vanuatu,VU,2,R
+"Venezuela, Bolivarian Republic of",VE,9,R
+Viet Nam,VN,2,R
+"Virgin Islands, British",VG,3,R
+"Virgin Islands, U.S.",VI,12,S
+Yemen,YE,1,R
