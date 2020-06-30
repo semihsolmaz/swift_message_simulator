@@ -1,9 +1,10 @@
 import math
 import random
 import uuid
+import time
 
 
-def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weights, tag70_words, l_currency, w_currencies):
+def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weights, tag70_words, l_currency, w_currencies, out_path, date_list, period):
     l_52d_57d = country_list[:int(math.ceil(len(country_list) * 0.003))]
     l_52d = country_list[int(math.ceil(len(country_list) * 0.003)):int(math.ceil(len(country_list) * 0.006) + 1)]
     l_57d = country_list[int(math.ceil(len(country_list) * 0.006)) + 1:int(math.ceil(len(country_list) * 0.009)) + 1]
@@ -42,9 +43,8 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         tag50k_company = company1.iloc[0]['name'][:35]
         tag50k_companyaddress_list = company1.iloc[0]['locality'].split(',')
         tag50k_companyaddress = ((tag50k_companyaddress_list[0].strip() + ',' + tag50k_companyaddress_list[1])[:35])[
-                                :35] + \
-                                '\n' + tag50k_companyaddress_list[2].strip()
-
+                                :35] + '\n' + tag50k_companyaddress_list[2].strip()
+        val_date = random.choice(date_list)
         tag59k_account_number = "%0.10d" % random.randint(0, 9999999999)
         company2 = company_names.sample(weights=company_d['current employee estimate'])
         tag59k_company = company2.iloc[0]['name'][:35]
@@ -69,21 +69,20 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         bank57d_branch = bank57d.iloc[0]['name_branch'][:35]
         bank57d_country = bank57d.iloc[0]['Country']
 
-        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + '20' + "%0.2d" % random.randint(1,
-                                                                                          6) + "%0.2d" % random.randint(
-            1, 29) + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
+        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + val_date + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
              + '\n' + tag50k_companyaddress + '\n:59:/' + tag59k_account_number + '\n' + tag59k_company + '\n' + \
              tag59k_companyaddress + '\n:52D:/' + tag52d_account_number + '\n' + bank52d_branch + '\n' + bank52d_country \
              + '\n:57D:/' + tag57d_account_number + '\n' + bank57d_branch + '\n' + bank57d_country + '\n' + ':70:' + tag70 + '\n:71A:' + tag71a + '\n-}'
 
         content = BHB + AHB + UHB + TB
 
-        message_file = open('C:\\Users\\semih\\PycharmProjects\\swift_sim\\messages\\' + (
+        message_file = open(out_path + (
                 "%0.12d" % random.randint(0, 999999999999)) + '-103-52d-57d.txt', 'w')
 
         try:
             message_file.write(content)
             message_file.close()
+            time.sleep(period)
         except:
             pass
 
@@ -114,6 +113,7 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         else:
             currency = random.choice(w_currencies)
 
+        val_date = random.choice(date_list)
         tag50k_account_number = "%0.10d" % random.randint(0, 9999999999)
         company1 = company_names.sample(weights=company_d['current employee estimate'])
         tag50k_company = company1.iloc[0]['name'][:35]
@@ -139,21 +139,20 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         bank52d_branch = bank52d.iloc[0]['name_branch'][:35]
         bank52d_country = bank52d.iloc[0]['Country']
 
-        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + '20' + "%0.2d" % random.randint(1,
-                                                                                          6) + "%0.2d" % random.randint(
-            1, 29) + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
+        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + val_date + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
              + '\n' + tag50k_companyaddress + '\n:59:/' + tag59k_account_number + '\n' + tag59k_company + '\n' + \
              tag59k_companyaddress + '\n:52D:/' + tag52d_account_number + '\n' + bank52d_branch + '\n' + bank52d_country \
              + '\n' + ':70:' + tag70 + '\n:71A:' + tag71a + '\n-}'
 
         content = BHB + AHB + UHB + TB
 
-        message_file = open('C:\\Users\\semih\\PycharmProjects\\swift_sim\\messages\\' + (
+        message_file = open(out_path + (
                 "%0.12d" % random.randint(0, 999999999999)) + '-103-52d.txt', 'w')
 
         try:
             message_file.write(content)
             message_file.close()
+            time.sleep(period)
         except:
             pass
 
@@ -190,6 +189,7 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         tag50k_companyaddress = (tag50k_companyaddress_list[0].strip() + ',' + tag50k_companyaddress_list[1])[:35] + \
                                 '\n' + tag50k_companyaddress_list[2].strip()
 
+        val_date = random.choice(date_list)
         tag59k_account_number = "%0.10d" % random.randint(0, 9999999999)
         company2 = company_names.sample(weights=company_d['current employee estimate'])
         tag59k_company = company2.iloc[0]['name'][:35]
@@ -208,21 +208,20 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         bank57d_branch = bank57d.iloc[0]['name_branch'][:35]
         bank57d_country = bank57d.iloc[0]['Country']
 
-        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + '20' + "%0.2d" % random.randint(1,
-                                                                                          6) + "%0.2d" % random.randint(
-            1, 29) + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
+        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + val_date + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
              + '\n' + tag50k_companyaddress + '\n:59:/' + tag59k_account_number + '\n' + tag59k_company + '\n' + \
              tag59k_companyaddress + '\n:57D:/' + tag57d_account_number + '\n' + bank57d_branch + '\n' + bank57d_country + \
              '\n' + ':70:' + tag70 + '\n:71A:' + tag71a + '\n-}'
 
         content = BHB + AHB + UHB + TB
 
-        message_file = open('C:\\Users\\semih\\PycharmProjects\\swift_sim\\messages\\' + (
+        message_file = open(out_path + (
                 "%0.12d" % random.randint(0, 999999999999)) + '-103-57d.txt', 'w')
 
         try:
             message_file.write(content)
             message_file.close()
+            time.sleep(period)
         except:
             pass
 
@@ -257,7 +256,7 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         tag50k_companyaddress_list = company1.iloc[0]['locality'].split(',')
         tag50k_companyaddress = (tag50k_companyaddress_list[0].strip() + ',' + tag50k_companyaddress_list[1])[:35] + \
                                 '\n' + tag50k_companyaddress_list[2].strip()
-
+        val_date = random.choice(date_list)
         tag59k_account_number = "%0.10d" % random.randint(0, 9999999999)
         company2 = company_names.sample(weights=company_d['current employee estimate'])
         tag59k_company = company2.iloc[0]['name'][:35]
@@ -277,21 +276,20 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         tag57a_bank = bank_bic.sample().iloc[0][0:4]
         tag57a_country = random.choice(country_list)
 
-        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + '20' + "%0.2d" % random.randint(1,
-                                                                                          6) + "%0.2d" % random.randint(
-            1, 29) + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
+        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + val_date + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
              + '\n' + tag50k_companyaddress + '\n:59:/' + tag59k_account_number + '\n' + tag59k_company + '\n' + \
              tag59k_companyaddress + '\n:52A:' + tag52a_bank + tag52a_country + '2A' + '\n:57A:' + tag57a_bank + \
              tag57a_country + '22' + '\n' + ':70:' + tag70 + '\n:71A:' + tag71a + '\n-}'
 
         content = BHB + AHB + UHB + TB
 
-        message_file = open('C:\\Users\\semih\\PycharmProjects\\swift_sim\\messages\\' + (
+        message_file = open(out_path + (
                 "%0.12d" % random.randint(0, 999999999999)) + '-103-52a-57a.txt', 'w')
 
         try:
             message_file.write(content)
             message_file.close()
+            time.sleep(period)
         except:
             pass
 
@@ -327,7 +325,7 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         tag50k_companyaddress_list = company1.iloc[0]['locality'].split(',')
         tag50k_companyaddress = (tag50k_companyaddress_list[0].strip() + ',' + tag50k_companyaddress_list[1])[:35] + \
                                 '\n' + tag50k_companyaddress_list[2].strip()
-
+        val_date = random.choice(date_list)
         tag59k_account_number = "%0.10d" % random.randint(0, 9999999999)
         company2 = company_names.sample(weights=company_d['current employee estimate'])
         tag59k_company = company2.iloc[0]['name'][:35]
@@ -344,20 +342,19 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         tag52a_bank = bank_bic.sample().iloc[0][0:4]
         tag52a_country = random.choice(country_list)
 
-        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + '20' + "%0.2d" % random.randint(1,
-                                                                                          6) + "%0.2d" % random.randint(
-            1, 29) + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
+        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + val_date + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
              + '\n' + tag50k_companyaddress + '\n:59:/' + tag59k_account_number + '\n' + tag59k_company + '\n' + \
              tag59k_companyaddress + '\n:52A:' + tag52a_bank + tag52a_country + '2A' + '\n' + ':70:' + tag70 + '\n:71A:' + tag71a + '\n-}'
 
         content = BHB + AHB + UHB + TB
 
-        message_file = open('C:\\Users\\semih\\PycharmProjects\\swift_sim\\messages\\' + (
+        message_file = open(out_path + (
                 "%0.12d" % random.randint(0, 999999999999)) + '-103-52a.txt', 'w')
 
         try:
             message_file.write(content)
             message_file.close()
+            time.sleep(period)
         except:
             pass
 
@@ -387,6 +384,7 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         else:
             currency = random.choice(w_currencies)
 
+        val_date = random.choice(date_list)
         tag50k_account_number = "%0.10d" % random.randint(0, 9999999999)
         company1 = company_names.sample(weights=company_d['current employee estimate'])
         tag50k_company = company1.iloc[0]['name'][:35]
@@ -410,20 +408,19 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         tag57a_bank = bank_bic.sample().iloc[0][0:4]
         tag57a_country = random.choice(country_list)
 
-        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + '20' + "%0.2d" % random.randint(1,
-                                                                                          6) + "%0.2d" % random.randint(
-            1, 29) + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
+        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + val_date + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
              + '\n' + tag50k_companyaddress + '\n:59:/' + tag59k_account_number + '\n' + tag59k_company + '\n' + \
              tag59k_companyaddress + '\n:57A:' + tag57a_bank + tag57a_country + '22' + '\n:70:' + tag70 + '\n:71A:' + tag71a + '\n-}'
 
         content = BHB + AHB + UHB + TB
 
-        message_file = open('C:\\Users\\semih\\PycharmProjects\\swift_sim\\messages\\' + (
+        message_file = open(out_path + (
                 "%0.12d" % random.randint(0, 999999999999)) + '-103-57a.txt', 'w')
 
         try:
             message_file.write(content)
             message_file.close()
+            time.sleep(period)
         except:
             pass
 
@@ -459,7 +456,7 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         tag50k_companyaddress_list = company1.iloc[0]['locality'].split(',')
         tag50k_companyaddress = (tag50k_companyaddress_list[0].strip() + ',' + tag50k_companyaddress_list[1])[:35] + \
                                 '\n' + tag50k_companyaddress_list[2].strip()
-
+        val_date = random.choice(date_list)
         tag59k_account_number = "%0.10d" % random.randint(0, 9999999999)
         company2 = company_names.sample(weights=company_d['current employee estimate'])
         tag59k_company = company2.iloc[0]['name'][:35]
@@ -473,19 +470,18 @@ def mt103(bank_bic, bank_names, company_d, company_names, country_list, val_weig
         else:
             tag70 = 'sample text '
 
-        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + '20' + "%0.2d" % random.randint(1,
-                                                                                          6) + "%0.2d" % random.randint(
-            1, 29) + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
+        TB = '{4:\n:20:' + tag20 + '\n:23B:CRED\n:32A:' + val_date + currency + txn_val + '\n:50K:/' + tag50k_account_number + '\n' + tag50k_company \
              + '\n' + tag50k_companyaddress + '\n:59:/' + tag59k_account_number + '\n' + tag59k_company + '\n' + \
              tag59k_companyaddress + '\n' + ':70:' + tag70 + '\n:71A:' + tag71a + '\n-}'
 
         content = BHB + AHB + UHB + TB
 
-        message_file = open('C:\\Users\\semih\\PycharmProjects\\swift_sim\\messages\\' + (
+        message_file = open(out_path + (
                 "%0.12d" % random.randint(0, 999999999999)) + '-103.txt', 'w')
 
         try:
             message_file.write(content)
             message_file.close()
+            time.sleep(period)
         except:
             pass

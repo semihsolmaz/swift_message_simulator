@@ -2,7 +2,7 @@ import random
 import uuid
 
 
-def mt700(bank_bic, company_d, company_names, country_list, val_weights, l_currency, w_currencies):
+def mt700(bank_bic, company_d, company_names, country_list, val_weights, l_currency, w_currencies, out_path, date_list):
     for c_code in country_list:
         if random.randint(0,100) > 50:
             bank1 = 'AAAA'
@@ -20,14 +20,14 @@ def mt700(bank_bic, company_d, company_names, country_list, val_weights, l_curre
             BHB = '{1:F01' + bank1 + country1 + 'B0AXXX0377002089}'
             AHB = '{2:O7001454110804' + bank2 + country2 + 'XXXXX100009037121108041654N}'
             UHB = '{3:{700:TGT}{108:OPTUSERREF16CHAR}{121:' + str(uuid.uuid1()) + '}}'
-    
+
+        val_date = random.choice(date_list)
         tag20 = "%0.6d" % random.randint(0, 999999)
-        tag27 = '1/1'
+        # tag27 = '1/1'
         tag40a = 'IRREVOCABLE'
-        tag31c = '20' + "%0.2d" % random.randint(1, 6) + "%0.2d" % random.randint(1, 29)
-        tag44c = '20' + "%0.2d" % random.randint(2, 8) + "%0.2d" % random.randint(1, 29)
-        tag31d = ':31D:150430AMSTERDAM'
-    
+        tag44c = random.choice(date_list)
+
+
     
         if (random.randint(0, 100) < 15) and (c_code in l_currency.values):
             currency = l_currency.loc[l_currency['co_code'] == c_code]['cur_code'].values[0]
@@ -51,11 +51,11 @@ def mt700(bank_bic, company_d, company_names, country_list, val_weights, l_curre
         tag41a_bank = bank_bic.sample().iloc[0][0:4]
         tag41a_country = random.choice(country_list)
     
-        tag57a_bank = tag41a_bank
-        tag57a_country = tag41a_country
+        # tag57a_bank = tag41a_bank
+        # tag57a_country = tag41a_country
     
-        TB = '{4:\n' + ':27:1/1\n:40A:' + tag40a + '\n:20:' + tag20 + '\n' + ':31C:' + tag31c + \
-             '\n' + ':40E:UCP LATEST VERSION\n' + tag31d + '\n:50:' + tag50_company + '\n' + \
+        TB = '{4:\n' + ':27:1/1\n:40A:' + tag40a + '\n:20:' + tag20 + '\n' + ':31C:' + val_date + \
+             '\n' + ':40E:UCP LATEST VERSION\n:31D:' + val_date + tag31d + '\n:50:' + tag50_company + '\n' + \
              tag50_companyaddress + '\n' + ':59:' + tag59_company + '\n' + tag59_companyaddress + '\n' + ':32B:' + currency + \
              txn_val + '\n' + ':41A:' + tag41a_bank +  tag41a_country + '2A\n' + 'BY PAYMENT\n' + ':43P:NOT ALLOWED' '\n' + \
              ':43T:ALLOWED\n' + ':44E:' + tag31d + '\n' + ':44F:' + tag44f + '\n' + ':44C:' + tag44c + '\n' +\
@@ -69,7 +69,7 @@ def mt700(bank_bic, company_d, company_names, country_list, val_weights, l_curre
     
         content = BHB + AHB + UHB + TB
     
-        message_file = open('C:\\Users\\semih\\PycharmProjects\\swift_sim\\messages\\' + (
+        message_file = open(out_path + (
                 "%0.12d" % random.randint(0, 999999999999)) + '-700.txt', 'w')
     
         try:
